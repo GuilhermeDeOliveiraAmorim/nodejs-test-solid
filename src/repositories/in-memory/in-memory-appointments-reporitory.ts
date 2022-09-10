@@ -25,7 +25,7 @@ class InMemoryAppointmentsReporitory implements AppointmentsRepository {
             return null;
         }
 
-        return null;
+        return overlappingAppointment;
     }
 }
 
