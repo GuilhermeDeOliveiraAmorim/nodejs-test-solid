@@ -5,7 +5,8 @@ test("add appointment", () => {
     const startsAt = new Date();
     const endsAt = new Date();
 
-    endsAt.setDate(endsAt.getDate() + 1);
+    startsAt.setDate(startsAt.getDate() + 1);
+    endsAt.setDate(endsAt.getDate() + 2);
 
     const appointment = new Appointment({
         customer: "A",
@@ -17,11 +18,28 @@ test("add appointment", () => {
     expect(appointment.customer).toEqual("A");
 });
 
-test("cannot create an appointment with ends date smaller than starts date", () => {
+test("cannot create an appointment with ends date smaller than start date", () => {
     const startsAt = new Date();
     const endsAt = new Date();
 
-    endsAt.setDate(endsAt.getDate() - 1);
+    startsAt.setDate(startsAt.getDate() + 2);
+    endsAt.setDate(endsAt.getDate() + 1);
+
+    expect(() => {
+        return new Appointment({
+            customer: "A",
+            startsAt,
+            endsAt,
+        });
+    }).toThrow();
+});
+
+test("cannot create an appointment with start date before now date", () => {
+    const startsAt = new Date();
+    const endsAt = new Date();
+
+    startsAt.setDate(startsAt.getDate() - 1);
+    endsAt.setDate(endsAt.getDate() + 1);
 
     expect(() => {
         return new Appointment({
