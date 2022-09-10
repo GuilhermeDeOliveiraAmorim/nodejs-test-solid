@@ -14,5 +14,8 @@
 		"@typescript-eslint/parser": "^5.36.2",
 		"eslint": "^8.23.0",
 		"vitest": "^0.23.2"
+	},
+	"dependencies": {
+		"date-fns": "^2.29.2"
 	}
 }
